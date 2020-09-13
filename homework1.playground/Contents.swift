@@ -17,7 +17,7 @@ class Game {
         battleRoyale(array: teams)
     }
     
-    func teamCreate() {
+    private func teamCreate() {
         for _ in 1...n {
         let index = Int.random(in: 0..<namesForTeam.count)
         let teamName = namesForTeam[index]
@@ -30,7 +30,7 @@ class Game {
         }
     }
     
-    func battleRoyale(array: [Team]) {
+    private func battleRoyale(array: [Team]) {
         var index = 0
         var newArray: [Team] = []
         
@@ -47,7 +47,7 @@ class Game {
         }
     }
     
-    func fight(firstTeam: Team, secondTeam: Team) -> Team {
+    private func fight(firstTeam: Team, secondTeam: Team) -> Team {
         let magicChest = Chest()
         var indexFirstTeam = 0
         var indexSecondTeam = 0
