@@ -36,6 +36,20 @@ class MyCalculator: Calculator {
     func sortByEvenOdd(array: [Int]) -> [Int] {
         return array.sorted(by: {$0 % 2 == 1 && $1 % 2 == 0})
     }
+    
+//    на всякий случай сделал второй вариант решения данной задачи
+    func sortByEvenOddSecond(array: [Int]) -> [Int] {
+        var arrayOne: [Int] = []
+        var arrayTwo: [Int] = []
+        for i in array {
+            if i % 2 == 0 {
+                arrayOne.append(i)
+            } else {
+                arrayTwo.append(i)
+            }
+        }
+        return arrayTwo + arrayOne
+    }
 
     func triforce(n: Int) {
         for i in 0..<n {
@@ -78,6 +92,9 @@ example.fibonacci(n: 2)
 example.fibonacci(n: 6)
 
 example.sortByEvenOdd(array: [2, 3, 4, 6, 8, 1, 7, 9])
+example.sortByEvenOddSecond(array: [2, 3, 4, 6, 8, 1, 7, 9])
+example.sortByEvenOdd(array: [2, 3, 4, 6, 8, 1, 7, 9, 1, 1, 1, 1, 1, 1, 1])
+example.sortByEvenOddSecond(array: [2, 3, 4, 6, 8, 1, 7, 9, 1, 1, 1, 1, 1, 1, 1])
 
 example.triforce(n: 9)
 
