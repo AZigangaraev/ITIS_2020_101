@@ -4,5 +4,6 @@
         <page name='Calculator'/>
         <page name='Untitled Page'/>
         <page name='BattleRoyale'/>
+        <page name='OOP'/>
     </pages>
 </playground>

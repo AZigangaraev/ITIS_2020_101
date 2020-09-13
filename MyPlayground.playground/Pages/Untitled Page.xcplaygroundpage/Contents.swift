@@ -133,4 +133,4 @@ let quality: ItemQuality = .epic
 let classValue = HumanClass()
 let structValue = HumanStruct()
 classValue.name = "Ivan"
-structValue.name = "Ivan"
+//structValue.name = "Ivan"
