@@ -214,4 +214,99 @@ var battle = Battle()
 prepareForBattle()
 
     battle.battleBegins(with: FirstTeam, SecondTeam: SecondTeam, round: 5)
+    
+    
+    
+    
+    
+    
+
+protocol Calculator {
+    /// Функция деления с остатком, должна вернуть в первой части результат деления, во второй части остаток.
+    func divideWithRemainder(_ x: Int, by y: Int) -> (Int, Int)
+
+    /// Функция должна вернуть массив `n` чисел Фибоначчи. (Числа 1, 1, 2, 3, 5, 8 и т.д.)
+    func fibonacci(n: Int) -> [Int]
+
+    /// Функция должна сортировать массив таким образом, чтобы в начале массива были нечётные числа, а в конце — чётныеСортировать сами числа внутри чётных-нечётных необязательно.
+    func sortByEvenOdd(array: [Int]) -> [Int]
+
+    /// Функция должна напечатать triforce знаками "▲" и " " функцией `print`.
+    /// - parameter n: Высота triforce.
+    func triforce(n: Int)
+}
+
+class MyCalculator: Calculator {
+
+    func triforce(n: Int) {
+        var i = 0, j = 0
+        while i < n  {
+            j = 0
+            while j < (n - i) {
+                print(" ", terminator: "")
+                j += 1
+            }
+            for _ in 0...i * 2 {
+                print("▲", terminator: "")
+            }
+            print()
+           i += 1
+        }
+    }
+
+    func fibonacci(n: Int) -> [Int] {
+        var fibArr: [Int] = [1, 1]
+        var firstNumber = 1, secondNumber = 1
+        var thirdNumber: Int
+
+        while fibArr.count < n {
+            thirdNumber = firstNumber + secondNumber
+            fibArr.append(thirdNumber)
+            firstNumber = secondNumber
+            secondNumber = thirdNumber
+        }
+        return fibArr
+    }
+
+    func divideWithRemainder(_ x: Int, by y: Int) -> (Int, Int) {
+        let p1 = x / y
+        let p2 = x % y
+        return (p1, p2)
+    }
+
+    func sortByEvenOdd(array: [Int]) -> [Int] {
+        var sortedArr = array.filter{$0 % 2 != 0}
+        sortedArr.append(contentsOf: array.filter{$0 % 2 == 0})
+        return sortedArr
+    }
+}
+
+
+
+
+class Transport {
+    func move() {
+        print("Start moving")
+    }
+}
+
+class Car: Transport {
+    private let nameOfCar = "Lada"
+    private let color = "red"
+    
+    override func move() {
+        print("Engine is on")
+    }
+}
+
+class Moto: Transport {
+    private let nameOfMoto = "Yamaha"
+    private let color = "White"
+    
+    override func move() {
+        print("Engine is on")
+    }
+}
+
+
 
