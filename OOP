@@ -1,0 +1,217 @@
+import UIKit
+
+class FirstTeamSpecs {
+    var health: Double = 100
+    var damage = Double.random(in: 0...10)
+    var defense: Double = 15
+    var sleight: Double = 15
+    var name: String
+    var isAlive = true
+    
+    var increaseHealth: Double = 0
+    var upgradeDamage: Double = 0
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func attack(to enemy: SecondTeamSpecs) {
+        var damageGiven = damage
+        
+        if Double.random(in: 0..<100) < enemy.sleight {
+            damageGiven = 0
+        }
+        if enemy.defense > 0 {
+            enemy.defense -= damageGiven
+        } else {
+            enemy.health -= damageGiven
+        }
+    }
+    
+func findItems(to player: FirstTeamSpecs) {
+    self.increaseHealth = health
+    self.upgradeDamage = damage
+    
+    if Double.random(in: 0...1) < 1 {
+       increaseHealth = 0
+        upgradeDamage = 0
+    }
+    else {
+        increaseHealth = health + Double.random(in: 1...10)
+        upgradeDamage = damage + Double.random(in: 1...2)
+        
+        print("\(player.name) found boosts! \n")
+    }
+}
+}
+    
+class SecondTeamSpecs {
+    var health: Double = 100
+    var damage = Double.random(in: 0...10)
+    var defense: Double = 15
+    var sleight: Double = 15
+    var name: String
+    var isAlive = true
+    
+    var increaseHealth: Double = 0
+    var upgradeDamage: Double = 0
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func attack(to enemy: FirstTeamSpecs) {
+        var damageGiven = damage
+        
+        if Double.random(in: 0..<100) < enemy.sleight {
+            damageGiven = 0
+        }
+        if enemy.defense > 0 {
+            enemy.defense -= damageGiven
+        } else {
+            enemy.health -= damageGiven
+        }
+    }
+    func findItems(to player: SecondTeamSpecs) {
+        self.increaseHealth = health
+        self.upgradeDamage = damage
+        
+        if Double.random(in: 0...1) < 1 {
+           increaseHealth = 0
+            upgradeDamage = 0
+        }
+        else {
+            increaseHealth = health + Double.random(in: 1...10)
+            upgradeDamage = damage + Double.random(in: 1...2)
+            
+            print("\(player.name) found boosts! \n")
+        }
+    }
+}
+class Player1_1: FirstTeamSpecs {
+    override init(name: String) {
+    super.init(name: name)
+}
+}
+class Player1_2: FirstTeamSpecs {
+    override init(name: String) {
+    super.init(name: name)
+}
+}
+class Player1_3: FirstTeamSpecs {
+    override init(name: String) {
+    super.init(name: name)
+}
+}
+class Player1_4: FirstTeamSpecs {
+    override init(name: String) {
+    super.init(name: name)
+}
+}
+class Player2_1: SecondTeamSpecs {
+    override init(name: String) {
+    super.init(name: name)
+}
+}
+class Player2_2: SecondTeamSpecs {
+    override init(name: String) {
+    super.init(name: name)
+}
+}
+class Player2_3: SecondTeamSpecs {
+    override init(name: String) {
+    super.init(name: name)
+}
+}
+class Player2_4: SecondTeamSpecs {
+    override init(name: String) {
+    super.init(name: name)
+}
+}
+
+var FirstTeam = [FirstTeamSpecs]()
+var SecondTeam = [SecondTeamSpecs]()
+
+func prepareForBattle() {
+    FirstTeam.append(Player1_1(name: "Петя"))
+    FirstTeam.append(Player1_2(name: "Петр"))
+    FirstTeam.append(Player1_3(name: "Петька"))
+    FirstTeam.append(Player1_4(name: "Петрович"))
+    
+    SecondTeam.append(Player2_1(name: "Витя"))
+    SecondTeam.append(Player2_2(name: "Виктор"))
+    SecondTeam.append(Player2_3(name: "Витька"))
+    SecondTeam.append(Player2_4(name: "Викторович"))
+    
+}
+
+print("Teams have been created, players are preparing for the battle. \n")
+print("The battle begins! \n")
+
+class Battle {
+    func battleBegins(with FirstTeam: [FirstTeamSpecs], SecondTeam: [SecondTeamSpecs], round: Int) {
+        var firstTeamArray = FirstTeam
+        var secondTeamArray = SecondTeam
+    
+        for round in 1...round {
+        while !firstTeamArray.isEmpty && !secondTeamArray.isEmpty {
+            for team1 in firstTeamArray {
+                guard let target = secondTeamArray.randomElement() else {
+                    FirstTeamWon(on: round)
+                    return
+                }
+                team1.attack(to: target)
+                if target.health <= 0 {
+                target.isAlive = false
+                
+                
+                    print("\(target.name) was killed by \(team1.name)\n")
+                    print("----------------------- \n")
+                    secondTeamArray.remove(at: secondTeamArray.firstIndex(where: { !$0.isAlive})!)
+            }
+        }
+    
+            for team2 in secondTeamArray {
+                guard let target = firstTeamArray.randomElement() else {
+                    SecondTeamWon(on: round)
+                    return
+                }
+                team2.attack(to: target)
+                if target.health <= 0 {
+                    target.isAlive = false
+                    
+                print ("\(target.name) was killed by \(team2.name)\n")
+                    print("----------------------- \n")
+                    firstTeamArray.remove(at: firstTeamArray.firstIndex(where: { !$0.isAlive})!)
+                }
+            }
+}
+        }
+    }
+
+        func getRandomFirstTeamEnemy(from array: [FirstTeamSpecs]) -> FirstTeamSpecs? {
+            guard let target = array.randomElement() else {
+                return nil
+            }
+            return target
+}
+func getRandomSecondTeamEnemy(from array: [SecondTeamSpecs]) -> SecondTeamSpecs? {
+            guard let target = array.randomElement() else {
+                return nil
+            }
+            return target
+}
+
+        func FirstTeamWon(on round: Int) {
+            print("First team won on \(round) round!")
+}
+        func SecondTeamWon(on round: Int) {
+            print("Second team won on \(round) round!")
+}
+}
+
+var battle = Battle()
+prepareForBattle()
+
+    battle.battleBegins(with: FirstTeam, SecondTeam: SecondTeam, round: 5)
+
