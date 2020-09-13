@@ -196,4 +196,3 @@ class Game {
 let game = Game()
 game.createTeams(n: 3)
 game.startGame()
-var check = [1, 2, 3, 4, 5]
