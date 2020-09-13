@@ -18,7 +18,7 @@ class Hero {
             item -= 1
             damage += 10
         }
-        print("\(self.name) hit \(rival.name) Damage = \(damage)")
+        print("\(self.name) hit \(rival.name) Damage = \(damage) HealthPoint = \(rival.healthPoint)")
     }
     
     func amIAlive() -> Bool {
@@ -124,7 +124,7 @@ class Game {
             if count % 2 == 0 {
                 heroOfFirst.fight(with: heroOfSecond)
                 if heroOfSecond.amIAlive() == false {
-                    print("\(heroOfSecond.name) is dead 💀 <------")
+                    print("\(heroOfSecond.name) of \(second.name) is dead 💀 <------")
                     second.heroes.remove(at: two)
                     countHeroOfSecond -= 1
                     if countHeroOfSecond == 0 {
@@ -134,11 +134,11 @@ class Game {
             } else {
                 heroOfSecond.fight(with: heroOfFirst)
                 if heroOfFirst.amIAlive() == false {
-                    print("\(heroOfSecond.name) is dead 💀 <------")
+                    print("\(heroOfFirst.name) of \(first.name) is dead 💀 <------")
                     first.heroes.remove(at: one)
                     countHeroOfFirst -= 1
                     if countHeroOfFirst == 0 {
-                        print("\(first.name) lost the game")
+                        print("\(first.name) lost the game 🥺👉👈")
                     }
                 }
             }
@@ -150,8 +150,8 @@ class Game {
         return first
     }
     
-    func startGame() {
-        prepare(n: 3)
+    func startGame(n: Int) {
+        prepare(n: n)
         giveItems()
         while teams.count != 1 {
             roundPlay()
@@ -163,5 +163,6 @@ class Game {
     }
 }
 
+//test
 var game = Game()
-game.startGame()
+game.startGame(n: 3)
