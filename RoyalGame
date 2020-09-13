@@ -1,0 +1,141 @@
+import UIKit
+class Person1{//Просписываю характеристики общие для игроков первой команды
+    var team1 : String
+    var name : String
+    var isAlive = true
+    
+    var hp = 100
+    
+    var damage = 7
+    
+    init(team1:String){
+        self.team1 = team1
+    }
+    init(name:String) {
+        self.name = name
+    }
+    init(isAlive:Bool){
+        self.isAlive = isAlive
+    }
+    init(hp:Int){
+        self.hp = hp
+    }
+    init(damage:Int){
+        self.damage = damage
+    }
+    //Нанесение урона
+    func kick(_: <#parameters#>) -> <#return type#> {
+        <#function body#>
+    }
+    func helper(){
+        print("I need support")
+    }
+    func findHP(){
+        print("I find some crystal")
+        hp + 5;
+    }
+    func voicedead(){
+        print("I was killed")
+        hp = 0;
+        
+    }
+    
+}
+class Person2{//Просписываю характеристики общие для игроков второй команды
+    var team2 : String
+    var name : String
+    
+    var sleight = 15
+    
+    var isAlive = true
+    
+    var hp = 100
+    
+    var damage = 7
+    
+    init (team2:String){
+        self.team2 = team2
+    }
+    init(name:String) {
+        self.name = name
+    }
+    init(isAlive:Bool){
+        self.isAlive = isAlive
+    }
+    init(hp:Int){
+        self.hp = hp
+    }
+    init(damage:Int){
+        self.damage = damage
+    }
+    func kick(_: <#parameters#>) -> <#return type#> {
+        <#function body#>
+    }
+    func helper(){
+        print("I need support")
+    }
+    func findHP(){
+        print("I find some crystal")
+        hp + 5;
+    }
+    func voicedead(){
+        print("I was killed")
+        hp = 0;
+    }
+}
+class Player11:Person1{
+    override init(name:String){
+        super.init(name:name)
+    }
+}
+class Player12:Person1{
+    override init(name:String){
+        super.init(name:name)
+    }
+}
+class Player13:Person1{
+    override init(name:String){
+        super.init(name:name)
+    }
+}
+
+class Player14:Person1{
+    override init(name:String){
+        super.init(name:name)
+    }
+}
+class Player21:Person2{
+    override init(name:String){
+        super.init(name:name)
+    }
+}
+class Player22:Person2{
+    override init(name:String){
+        super.init(name:name)
+    }
+}
+class Player23:Person2{
+    override init(name:String){
+        super.init(name:name)
+    }
+}
+class Player24:Person2{
+    override init(name:String){
+        super.init(name:name)
+    }
+}
+var FirstTeam = [Person1]()
+var SecondTeam = [Person2]()
+var whoWillBeFirst = Int.random(in:1...2)
+func formerFirst(){
+    FirstTeam.append(Player11(name:"Эвелина"))
+    FirstTeam.append(Player12(name:"Анастасия"))
+    FirstTeam.append(Player13(name:"Тимур"))
+    FirstTeam.append(Player11(name:"Альберт"))
+}
+func formerSecond(){
+    SecondTeam.append(Player21(name:"Марсель"))
+    SecondTeam.append(Player22(name:"Никита"))
+    SecondTeam.append(Player23(name:"Миша"))
+    SecondTeam.append(Player21(name:"Саркис"))
+}

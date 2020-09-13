@@ -1,0 +1,96 @@
+import UIKit
+protocol Calculator {
+    /// Функция деления с остатком, должна вернуть в первой части результат деления, во второй части остаток.
+    func divideWithRemainder( x: Int, by y: Int) -> (Int, Int)
+    /// Функция должна вернуть массив `n` чисел Фибоначчи. (Числа 1, 1, 2, 3, 5, 8 и т.д.)
+    func fibonacci(n: Int) -> [Int]
+    /// Функция должна сортировать массив таким образом, чтобы в начале массива были нечётные числа, а в конце — чётные. Сортировать сами числа внутри чётных-нечётных необязательно.
+    func sortByEvenOdd(array: [Int]) -> [Int]
+    /// Функция должна напечатать triforce знаками "▲" и " " функцией `print`.
+    /// - parameter n: Высота triforce.
+    class Calc: Calculator {
+        let array: [Int]
+    func divideWithRemainder( x: Int, by y: Int) -> (Int, Int) {
+        let integdiv:Int = x / y
+        let remainder:Int = x % y
+        return(integdiv,remainder)
+    }
+    func fibonacci(n: Int) -> [Int] {
+        var arrayfib = Array (repeating: 0, count: n)
+        arrayfib[0]=1
+        arrayfib[1]=1
+        var a = 1
+        var b = 1
+        for i in 2...n-1
+        {
+          let c = a + b
+          a = b
+          b = c
+          arrayfib[i]=b
+        }
+        return arrayfib
+    }
+    func sortByEvenOdd(array: [Int]) -> [Int] {
+        var array1:[Int] = array
+        var startInd = 0
+        var endInd = array1.count - 1 //индекс последнего элемента
+        while (startInd < endInd)
+        {
+            while (startInd < endInd && (array1[startInd] % 2) != 0){
+                startInd+=1
+            }
+            if (startInd >= endInd){
+                break;
+            }
+            while (startInd < endInd && (array1[endInd] % 2) == 0){
+                endInd-=1
+            }
+            if (startInd >= endInd){
+                break;
+            }
+            let point = array1[startInd]// замена сортированной части
+            array1[startInd]=array1[endInd]
+            array1[endInd] = point
+            
+            startInd+=1
+            endInd-=1
+        }
+        return array1
+    }
+        func triforce(n: Int) {
+        let a:Character = " "
+        let b:Character = "▲"
+        for row in 1...n
+        {
+            for _ in 1...(n*2-row + 1){
+                print(a, terminator:"")}
+            for _ in 1...(row * 2 - 1){
+                print(b, terminator:"")}
+            for _ in 1...(n*2-row + 1){
+                print(a,terminator:"")}
+            print()
+        }
+        for row1 in 1...n
+        {
+        
+            for _ in 1...(n-row1+1){
+                print(a,terminator:"")}
+            for _ in 1...(row1 * 2 - 1){
+                print(b, terminator:"")}
+            for _ in 1...((n - row1) * 2 + 1){
+                print(a, terminator:"")}
+            for _ in 1...(row1 * 2 - 1){
+                print(b, terminator:"")}
+            for _ in 1...(n-row1+1){
+                print(a, terminator:"")}
+            print()
+            }
+        }
+    }
+    let Calc= Computer()
+    print(Calc.divideWithRemainder(x: 35,by: 8))
+    print(Calc.fibonacci(n: 14))
+    let array:[Int] = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+    print("Начальный массив : \(array)" + " Новый массив : \(Calc.sortByEvenOdd(array: array))")
+    Calc.triforce(n: 6)
+}

@@ -1,0 +1,85 @@
+import UIKit
+/*Наследование*/
+class Car {
+    var model:String = "No model"
+    var speed:Float =  0.0
+    var weight:Float = 0.0
+    var color:String = "черный"
+    func on(){
+        print("bibi")
+    }
+}
+class Audi : Car{
+    let cond = true
+    override func on(){
+        super.on()
+    }
+}
+let audir3 = Audi()
+audir3.model = "Суперская"
+audir3.weight = 2.1
+audir3.speed = 228.2
+audir3.on()
+print("Модель у машины \(audir3.model), вес машины \(audir3.weight)т ,скорость \(audir3.speed)км/ч , цвет \(audir3.color), кондиционер \(audir3.cond)")
+/*Полиморфизм*/
+class Driver{
+    var name: String
+    var age: Int
+             
+    init(name: String, age: Int){
+        self.name = name
+        self.age = age
+    }
+    func show(){
+        print("Имя: \(name),  Возраст: \(age)")
+    }
+}
+         
+class TaxiDriver : Driver{
+    var company: String = "No company"
+    init(name: String, age: Int, company: String) {
+        self.company = company
+        super.init(name:name, age: age)
+    }
+    override func show(){
+        print("Имя: \(name)  Возраст: \(age), Водитель в компании: \(company)")
+    }
+}
+         
+class PrivateDriver : TaxiDriver{
+    override func show(){
+        print("Имя: \(name),  Возраст: \(age),  Водитель в  компании: \(company)")
+    }
+}
+let third: Driver = PrivateDriver(name: "Игорь", age: 25, company: "YandexPlus")
+let first: Driver = Driver(name:"Иван", age: 47)
+let second: Driver = TaxiDriver(name: "Анастасия", age: 28, company: "Uber")
+print (first.show(),second.show(),third.show())
+     /*Инкапсуляция*/
+class Music  {
+    let notes: [String]
+ 
+    init(notes: [String])  {
+        self.notes = notes
+    }
+
+    func prepared() -> String  {
+        return notes.joined(separator: " ")
+    }
+class Instrument {
+    let brand: String
+    init(brand: String) {
+    self.brand = brand
+    }
+func tune() -> String {
+   fatalError("Implement this method for \(brand)")
+}
+    func play(_ music: Music) -> String {
+        return music.prepared()
+    }
+    func perform(_ music: Music) {
+        print(tune())
+        print(play(music))
+    }
+    }
+}
