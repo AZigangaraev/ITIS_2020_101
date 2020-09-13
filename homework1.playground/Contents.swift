@@ -271,7 +271,7 @@ class Team {
                 team.append(Tank(name: "Tank-\(teamName)"))
                 count += 1
             case 3:
-                print("Хиллер успешно добавлен в команду")
+                print("Счастливчик успешно добавлен в команду")
                 team.append(Lucky(name: "Lucky-\(teamName)"))
                 count += 1
             default:
