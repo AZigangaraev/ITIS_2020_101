@@ -1,136 +1,46 @@
-protocol MakingSounds {
-    func makeSound()
+protocol Developer{
+    var workingPLace: String { get set }
+    
+    func coding()
+    
+    func drinkMilkShake()
 }
 
-class Animal: MakingSounds {
-    private let identifer: Int = Int.random(in: 1...10000)
+class Human{
+    var age: Int
     
-    internal func makeSound() {
-        print("<Silence>")
-    }
+    var sity: String
     
-    func printDescription() {
-        print("Animal \(identifer)")
-    }
-}
-
-class Dog: Animal {
-    override func makeSound() {
-        print("Bark!")
+    init(age: Int, sity: String) {
+        self.age = age
+        self.sity = sity
     }
     
-    func makeBeep() {
-        print("Beep 2")
+    func eating(){
+        print("Nyum Nyum")
     }
 }
 
-extension MakingSounds {
-    func makeBeep() {
-        print("Beep!")
-    }
-}
-
-class RubberDuck: MakingSounds {
-    func makeSound() {
-        print("Quack")
-    }
-}
-
-class Toy: MakingSounds {
-    func makeSound() {
-        print("Brrrr")
-    }
-}
-
-let dog = Dog()
-let animal: MakingSounds = Dog()
-dog.makeBeep()
-let beepArray = [dog, animal]
-for beep in beepArray {
-    beep.makeBeep()
-}
-
-let duck = RubberDuck()
-
-let array: [Any] = [dog, animal, duck, 1, 2, 3, 4]
-var sum = 0
-for element in array {
-    if let makingSound = element as? MakingSounds {
-        makingSound.makeSound()
-    } else if let int = element as? Int {
-        sum += int
-    }
-}
-print(sum)
-
-class Square {
-    var length: Int = 0
-}
-
-protocol SquareSize {
-    func printSquareSize()
-}
-
-let square = Square()
-square.length = 5
-
-extension Square: SquareSize {
-    func printSquareSize() {
-        print("\(length * length)")
-    }
-}
-
-square.printSquareSize()
-
-protocol HasName {
-    var name: String { get set }
-}
-
-class Human: HasName {
-    var name: String = ""
-}
-
-var human: HasName = Human()
-human.name = "Ivan"
-
-class HumanClass: HasName {
-    var name: String = ""
-}
-
-struct HumanStruct: HasName {
-    var name: String = ""
+class Albert: Human, Developer{
     
-    mutating func changeName() {
-        name = "Ivan"
-    }
-}
-
-let intRand = Int.random(in: 1...5)
-
-class ClassWithInit {
-    var x: Int
-    var y: Int
-    var z: Int
+    var workingPLace: String
     
-    init(x: Int, y: Int, z: Int) {
-        self.x = x
-        self.y = y
-        self.z = z
+    init(age: Int, sity: String, workingPLace: String) {
+        self.workingPLace = workingPLace
+        super.init(age: age, sity: sity)
     }
+    
+    func coding() {
+        print("I'm coding")
+    }
+    
+    func drinkMilkShake() {
+        print("I'm drinkking")
+    }
+    
 }
 
-var h1 = HumanStruct()
-h1.changeName()
-
-enum ItemQuality {
-    case epic
-    case normal
-    case rare
-}
-
-let quality: ItemQuality = .epic
-
-let classValue = HumanClass()
-let structValue = HumanStruct()
-classValue.name = "Ivan"
-structValue.name = "Ivan"
+var albert = Albert(age: 19, sity: "Kazan", workingPLace: "Apple.com")
+albert.coding()
+albert.eating()
+albert.drinkMilkShake()
