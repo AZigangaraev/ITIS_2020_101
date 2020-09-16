@@ -84,7 +84,7 @@ class Game {
     var teams: [Team] = []
     var Round : Int = 1
 
-    func TeamCreate(n: Int) {
+    func teamcreate(n: Int) {
         var numberOfTeams = 1
         for _ in 0..<n {
             numberOfTeams *= 2
@@ -93,7 +93,7 @@ class Game {
             teams.append(Team(name: "Team\(i)"))
         }
     }
-    func FightRound() {
+    func fightround() {
         print("Round \(Round) is coming!")
         var CurrentTeamsFight = teams
         var result: [Team] = []
@@ -104,14 +104,14 @@ class Game {
             number = Int.random(in: 0..<CurrentTeamsFight.count)
             let TeamTwo = CurrentTeamsFight[number]
             CurrentTeamsFight.remove(at: number)
-            print(TeamOne.name + "and" + TeamTwo.name + "came for a fight!")
-            result.append(FightBetweenTeams(first: TeamOne, second: TeamTwo))
+            print(TeamOne.name + " and " + TeamTwo.name + " came for a fight!")
+            result.append(fightbetweenteams(first: TeamOne, second: TeamTwo))
             print(result.last!.name + "survived!")
         }
         self.teams = result
         Round += 1
     }
-    func FightBetweenTeams (first: Team, second: Team) -> Team {
+    func fightbetweenteams (first: Team, second: Team) -> Team {
            var Number = 0
            var Number1 = first.survivor.count
            var Number2 = second.survivor.count
@@ -149,7 +149,7 @@ class Game {
            return first
        }
 
-    func LootTime() {
+    func loottime() {
         print("Got some time for loot")
         let x = Int.random(in: 0..<10)
         for _ in 0...x {
@@ -160,10 +160,10 @@ class Game {
         }
     }
     func StartGame() {
-        TeamCreate(n: 4)
+        teamcreate(n: 4)
         while teams.count > 1 {
-            FightRound()
-            LootTime()
+            fightround()
+            loottime()
         }
         print((teams.last!.name) + "CHICKEN CHICKEN WINNER DINNER")
     }

@@ -15,7 +15,6 @@ protocol Calculator {
 class AdoRed: Calculator {
 
     func divideWithRemainder(_ x: Int, by y: Int) -> (Int, Int) {
-        return (x / y, x % y)
     }
 
      func fibonacci(n: Int) -> [Int] {
@@ -35,7 +34,7 @@ class AdoRed: Calculator {
         for n in array {
             n % 2 == 0 ? arr1.append(n) : arr2.append(n)
         }
-        return arr1+arr2
+        return arr1 + arr2
     }
 
     func triforce(n: Int) {
