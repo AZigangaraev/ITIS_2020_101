@@ -18,7 +18,7 @@ fileprivate class Form {
     }
     
     func countingSquare() -> Int {
-        return self.length * self.width;
+        return self.length * self.width
     }
     
     func countingPerimeter() -> Int {
@@ -27,7 +27,7 @@ fileprivate class Form {
     
 
     func countingSumOfOppositeSides() -> Int {
-        return self.length + self.width;
+        return self.length + self.width
     }
     
 }
@@ -45,7 +45,7 @@ fileprivate class Form3D: Form {
     }
     
     func countingVolume() -> Int {
-        return self.length * self.width * self.height;
+        return self.length * self.width * self.height
     }
 }
 
@@ -75,108 +75,96 @@ protocol Calculator {
 }
 
 
-class RealiseOfCalculator {
+class RealiseOfCalculator: Calculator {
     
-    var x: Int;
-    var y: Int;
-    var n: Int;
-    var a: Array<Int>;
-    
-    init(x:Int,y: Int,n: Int,a: Array<Int>) {
-        self.x = x;
-        self.y = y;
-        self.n = n
-        self.a = a;
-    }
-    
-    func divideWithRemainder(x: Int, by y: Int) -> (Int, Int) {
+    func divideWithRemainder(_ x: Int, by y: Int) -> (Int, Int) {
         
-        let resultdiv = x / y;
-        let resultmod = x % y;
+        let resultdiv = x / y
+        let resultmod = x % y
         
         return (resultdiv,resultmod)
 
     }
     
     func fibonacci(n: Int) -> [Int] {
-     
-        var numbers: Array<Int> = [n];
         
-        numbers[0] = 1;
-        numbers[1] = 1;
-        let i:Int = 2;
+        var array: Array <Int> = []
+        array.append(1)
+        array.append(1)
         
-        for i in i..<n {
-             
-            numbers[i] = numbers[i - 1] + numbers[i - 2];
-        
+        if (n == 0) {
+            return []
         }
-        print("Fibonacci array to \(n) is ")
-        return numbers;
-        
+        else if (n == 1) {
+            return [1]
+        } else {
+            
+            for i in 2..<n {
+                array.append(array[i - 1] + array[i - 2])
+            }
+            return array
+            
+        }
     }
     
     func sortByEvenOdd(array: [Int]) -> [Int] {
-        var temp: Int = 0;
+        var array1: Array<Int> = []
+        var array2: Array<Int> = []
+        
         for i in array {
-            if a[i] % 2 != 0 {
-                for j in array {
-                    if a[j] % 2 == 0 {
-                        temp = array[i]
-                        array[i] = array[j]
-                        array[j] = temp;
-                    }
-                    
-                }
+            if (i % 2 == 0) {
+                array1.append(i)
+            } else {
+                array2.append(i)
             }
         }
-        return a;
+        return array1 + array2
     
     }
     
     func triforce(n: Int) {
-        var m: Int = 0;
-        var k: Int = 0;
-        var i: Int = 1;
+        var m: Int = 0
+        var k: Int = 0
+        var i: Int = 1
         
         while k < n {
                 
             while i < 2 * n - k {
-                print(" ");
-                i += 1;
+                print(" ")
+                i += 1
                 
             }
             
             while i < 1 + m {
-                print("▲");
-                i += 1;
+                print("▲")
+                i += 1
             }
             
-            m += 2;
+            m += 2
             print("\n")
-            k += 1;
+            k += 1
             
         }
         
-        m = 0;
-        i = 0;
-        k = 0;
+        m = 0
+        i = 0
+        k = 0
         
         while k < n {
             while i < n - k - 1 {
                 print(" ");
-                i += 1;
+                i += 1
             }
             
             while i < k + m + 1 {
-                print("▲");
-                i += 1;
+                print("▲")
+                i += 1
                 
             }
             
             while i < 2 * n - 1 - 2 * m {
-                print(" ");
-                i += 1;
+                print(" ")
+                i += 1
             }
             
             while i < k + m + 1 {
@@ -184,8 +172,8 @@ class RealiseOfCalculator {
                 
             }
             
-            m += 1;
-            k += 1;
+            m += 1
+            k += 1
             
             print("\n")
         }
@@ -194,11 +182,12 @@ class RealiseOfCalculator {
     }
     
 }
+
+var check = RealiseOfCalculator()
+
 var array: Array<Int> = [3,6,33,17,2,8,12]
-var check:RealiseOfCalculator = RealiseOfCalculator.init(x: 15, y: 5, n: 6, a: [3,6,33,17,2,8,12])
-var a: Array<Int> = [3,6,33,17,2,8,12]
-check.divideWithRemainder(x: 5, by: 3);
-//check.fibonacci(n: 5);//?
+check.divideWithRemainder(5, by: 3);
+check.fibonacci(n: 9)
 print(check.triforce(n: 6));
 print(check.sortByEvenOdd(array: [3,6,33,17,2,8,12]));
 
